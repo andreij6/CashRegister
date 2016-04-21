@@ -111,6 +111,10 @@ public class FileDatabase {
         //TODO: get value from shared Preferences
         return true;
     }
+
+    public void clear() {
+        add(new ArrayList<Product>());
+    }
     //endregion
 
 }

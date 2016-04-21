@@ -128,6 +128,10 @@ public class MainPresenter implements CashRegister.Presenter {
     }
 
     private String formattedProductCode(String code) throws InvalidInputException{
+        if(code.length() < 16){
+            throw createException(ValidationConstants.CODE_MISMATCH);
+        }
+
         if(!matchesPattern(code)){
             return fomattCode(code);
         }

@@ -11,5 +11,4 @@ public class ValidationConstants {
     public static final String CODE_EXISTS = "Product Code Exists";
     public static final String CODE_EMPTY = "Product Code Must Have A Value";
     public static final String CODE_MISMATCH = "Product Code Should be 16 alphanumeric Characters";
-
 }

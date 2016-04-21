@@ -66,7 +66,7 @@ public class AddProductDialogFragment extends DialogFragment {
 
                             dialog.cancel();
                         } catch (InvalidInputException iie){
-                            Toast.makeText(getActivity(), iie.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), iie.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 })
