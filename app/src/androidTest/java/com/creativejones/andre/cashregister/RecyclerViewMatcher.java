@@ -8,7 +8,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
-public class RecyclerViewMatcher {
+class RecyclerViewMatcher {
     private final int recyclerViewId;
 
     public RecyclerViewMatcher(int recyclerViewId) {

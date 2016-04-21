@@ -10,7 +10,7 @@ import java.util.HashMap;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
-public class PresenterSUT {
+class PresenterSUT {
 
     private CashRegister.Presenter SUT;
 
