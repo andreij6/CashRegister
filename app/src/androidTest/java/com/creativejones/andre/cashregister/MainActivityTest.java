@@ -196,7 +196,7 @@ public class MainActivityTest {
                 .CheckCartItemName(0, "Apples")
                 .CheckCartItemName(1, "Bacon")
                 .Checkout()
-                .PriceShouldBe("Total: $9.86");
+                .PriceShouldBe("Total: $10.72");
     }
 
     @Test

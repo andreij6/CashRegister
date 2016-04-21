@@ -90,21 +90,25 @@ public class PresenterUnitTests {
 
     //region Helpers
     private HashMap<String, Double> buildMapWithValidData() {
+        double taxRate = 0.0875;
+
         HashMap<String, Double> map = new HashMap<>();
-        map.put("UUID7;UUID4;UUID5", 10.2955);
-        map.put("UUID7;UUID4", 6.8755);
-        map.put("UUID5;UUID4", 4.8755);
-        map.put("UUID6;UUID5", 11.82);
+        map.put("UUID7;UUID4;UUID5", 10.2955 + (10.2955 * taxRate));
+        map.put("UUID7;UUID4", 6.8755 + (6.8755 * taxRate));
+        map.put("UUID5;UUID4", 4.8755 + (4.8755 * taxRate));
+        map.put("UUID6;UUID5", 11.82 + (11.82 * taxRate));
 
         return map;
     }
 
     private HashMap<String, Double> buildMapWithInValidData() {
+        double taxRate = 0.0875;
+
         HashMap<String, Double> map = new HashMap<>();
-        map.put("UUID7;UUID4;UUID5;CCC", 10.2955);
-        map.put("UUID7;UUID4;DDD", 6.8755);
-        map.put("UUID5;UUID4;OOP", 4.8755);
-        map.put("UUID6;UUID5;SOLID", 11.82);
+        map.put("UUID7;UUID4;UUID5;DSAFAS", 10.2955 + (10.2955 * taxRate));
+        map.put("UUID7;UUID4;ASDFSA", 6.8755 + (6.8755 * taxRate));
+        map.put("UUID5;UUID4;DDD", 4.8755 + (4.8755 * taxRate));
+        map.put("UUID6;UUID5;535353", 11.82 + (11.82 * taxRate));
         return map;
     }
 

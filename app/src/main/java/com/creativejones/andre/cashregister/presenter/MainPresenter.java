@@ -25,6 +25,7 @@ public class MainPresenter implements CashRegister.Presenter {
 
     public static final int CODE_LENGTH = 16;
     public static final int CODE_SECTION_LENGTH = 4;
+    public static final double TAX_RATE = 0.0875;
 
     ShoppingCart Cart;
     IProductRepository Repository;
@@ -94,7 +95,7 @@ public class MainPresenter implements CashRegister.Presenter {
             total += product.getPrice().doubleValue();
         }
 
-        return total;
+        return total + (total * TAX_RATE);
     }
 
     @Override
