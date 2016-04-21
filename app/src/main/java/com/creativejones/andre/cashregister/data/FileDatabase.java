@@ -53,10 +53,6 @@ public class FileDatabase {
                 return readAll();
             }
 
-            if(filesDir == null){ //happens during a unittest should mock datatase
-                return getDummyData();
-            }
-
             if(threwExecption && isFirstTimeOnApp()){
                 addDummyData();
 
