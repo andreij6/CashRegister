@@ -13,7 +13,6 @@ import com.creativejones.andre.cashregister.app.MainActivity;
 import com.creativejones.andre.cashregister.data.FileDatabase;
 import com.creativejones.andre.cashregister.utils.ValidationConstants;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -44,7 +43,7 @@ public class MainActivityTest {
     public void setup(){
         FileDatabase database = new FileDatabase(mActivityTestRule.getActivity());
 
-        database.clear();
+        database.resetDatabase();
     }
 
     @AfterClass

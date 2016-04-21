@@ -91,7 +91,20 @@ public class Product implements Parcelable {
     }
 
     public static Product Empty() {
-        return new Product("Empty", "", "");
+        return new Product("Empty", "", "0.0");
     }
     //endregion
+
+
+    @Override
+    public boolean equals(Object o) {
+        Product other = (Product)o;
+
+        return this.getProductCode().equalsIgnoreCase(other.getProductCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getProductCode().hashCode();
+    }
 }

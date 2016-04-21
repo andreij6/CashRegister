@@ -6,7 +6,7 @@ import com.creativejones.andre.cashregister.models.Product;
 
 import java.util.ArrayList;
 
-public class ProductRepository {
+public class ProductRepository implements IProductRepository{
 
 
     FileDatabase DB;

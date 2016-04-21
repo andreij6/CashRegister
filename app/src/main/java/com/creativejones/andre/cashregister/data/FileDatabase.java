@@ -53,6 +53,10 @@ public class FileDatabase {
                 return readAll();
             }
 
+            if(filesDir == null){ //happens during a unittest should mock datatase
+                return getDummyData();
+            }
+
             if(threwExecption && isFirstTimeOnApp()){
                 addDummyData();
 
@@ -64,12 +68,7 @@ public class FileDatabase {
     }
 
     private void addDummyData() {
-        ArrayList<Product> dataSource = new ArrayList<>();
-
-        dataSource.add(new Product("Peaches", "UUID7", "5.42"));
-        dataSource.add(new Product("Apples", "UUID4", "1.4555"));
-        dataSource.add(new Product("Corn", "UUID5", "3.42"));
-        dataSource.add(new Product("Bacon", "UUID6", "8.4"));
+        ArrayList<Product> dataSource = getDummyData();
 
         add(dataSource);
     }
@@ -112,8 +111,19 @@ public class FileDatabase {
         return true;
     }
 
-    public void clear() {
+    public void resetDatabase() {
         add(new ArrayList<Product>());
+    }
+
+    public ArrayList<Product> getDummyData() {
+        ArrayList<Product> dataSource = new ArrayList<>();
+
+        dataSource.add(new Product("Peaches", "UUID7", "5.42"));
+        dataSource.add(new Product("Apples", "UUID4", "1.4555"));
+        dataSource.add(new Product("Corn", "UUID5", "3.42"));
+        dataSource.add(new Product("Bacon", "UUID6", "8.4"));
+
+        return dataSource;
     }
     //endregion
 

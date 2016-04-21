@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.creativejones.andre.cashregister.CashRegister;
 import com.creativejones.andre.cashregister.InvalidInputException;
+import com.creativejones.andre.cashregister.data.IProductRepository;
 import com.creativejones.andre.cashregister.data.ProductRepository;
 import com.creativejones.andre.cashregister.models.Product;
 import com.creativejones.andre.cashregister.models.ShoppingCart;
@@ -26,10 +27,10 @@ public class MainPresenter implements CashRegister.Presenter {
     public static final int CODE_SECTION_LENGTH = 4;
 
     ShoppingCart Cart;
-    ProductRepository Repository;
+    IProductRepository Repository;
 
-    public MainPresenter(Context context){
-        Repository = new ProductRepository(context);
+    public MainPresenter(IProductRepository repository){
+        Repository = repository;
     }
 
     @Override
@@ -98,21 +99,7 @@ public class MainPresenter implements CashRegister.Presenter {
 
     @Override
     public String getCodeString() {
-        ArrayList<Product> products = Cart.getProducts();
-
-        StringBuilder builder = new StringBuilder();
-
-        for (int i = 0; i < products.size(); i++) {
-            builder.append(products.get(i).getProductCode());
-
-            // if not at the end of the line
-            // add the delimeter
-            if(i + 1 != products.size()) {
-                builder.append(";");
-            }
-        }
-
-        return builder.toString();
+        return Cart.getCodeString();
     }
 
     @Override
