@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void addNewProduct(View view){
-        AddProductDialogFragment fragment = AddProductDialogFragment.newInstance(Presenter);
+        AddProductDialogFragment fragment = AddProductDialogFragment.newInstance();
 
         fragment.show(getSupportFragmentManager(), "AddProductDialog");
     }
@@ -107,6 +107,11 @@ public class MainActivity extends AppCompatActivity
         ArrayList<Product> products = Presenter.getAllProduct();
 
         updateRecyclerData(AllItemsRecycler, ProductsAdater, products);
+    }
+
+    @Override
+    public CashRegister.Presenter getPresenter() {
+        return Presenter;
     }
 
     //region Helpers

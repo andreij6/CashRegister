@@ -10,6 +10,8 @@ import android.support.v7.app.AlertDialog;
 import com.creativejones.andre.cashregister.R;
 import com.creativejones.andre.cashregister.utils.PriceFormatter;
 
+import java.util.Locale;
+
 public class CheckoutDialogFragment extends DialogFragment {
 
     private double TotalPrice;
@@ -42,6 +44,6 @@ public class CheckoutDialogFragment extends DialogFragment {
     }
 
     private String formattedPrice() {
-        return PriceFormatter.formattPrice(getActivity(), TotalPrice);
+        return PriceFormatter.formattPrice(TotalPrice);
     }
 }

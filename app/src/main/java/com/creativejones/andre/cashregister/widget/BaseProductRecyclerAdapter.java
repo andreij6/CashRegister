@@ -65,7 +65,7 @@ public abstract class BaseProductRecyclerAdapter extends RecyclerView.Adapter<Ba
             Product product = Products.get(position);
 
             Name.setText(product.getName());
-            Price.setText(PriceFormatter.formattPrice(mContext, product.getPrice().doubleValue()));
+            Price.setText(PriceFormatter.formattPrice(product.getPrice().doubleValue()));
 
             AddOrRemoveButton.setText(getActionBtnLabel());
             AddOrRemoveButton.setOnClickListener(getActionBtnClickListener(product));

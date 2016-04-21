@@ -35,6 +35,9 @@ public class AddProductDialogFragment extends DialogFragment {
         final EditText codeInput =(EditText)view.findViewById(R.id.dialog_product_code_et);
         final Button toggleCodeBtn = (Button)view.findViewById(R.id.dialog_product_code_btn);
 
+        RegisterView = (CashRegister.RegisterView)getActivity();
+        Presenter = RegisterView.getPresenter();
+
         toggleCodeBtn.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -54,13 +57,13 @@ public class AddProductDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.finish, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         try {
+
                             if(codeInput.getVisibility() == View.VISIBLE){
                                 Presenter.createProduct(nameInput.getText().toString(), priceInput.getText().toString(), codeInput.getText().toString());
                             } else {
                                 Presenter.createProduct(nameInput.getText().toString(), priceInput.getText().toString());
                             }
 
-                            RegisterView = (CashRegister.RegisterView)getActivity();
 
                             RegisterView.newProductAdded();
 
@@ -79,9 +82,13 @@ public class AddProductDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    public static AddProductDialogFragment newInstance(CashRegister.Presenter presenter) {
+    public static AddProductDialogFragment newInstance() {
         AddProductDialogFragment fragment = new AddProductDialogFragment();
-        fragment.Presenter = presenter;
         return fragment;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

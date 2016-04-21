@@ -1,5 +1,10 @@
 package com.creativejones.andre.cashregister;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -8,7 +13,10 @@ import com.creativejones.andre.cashregister.app.MainActivity;
 import com.creativejones.andre.cashregister.data.FileDatabase;
 import com.creativejones.andre.cashregister.utils.ValidationConstants;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,14 +31,25 @@ import static org.hamcrest.Matchers.not;
 @LargeTest
 public class MainActivityTest {
 
+    private static MainActivityViewActions Actions;
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+
+    @BeforeClass
+    public static void setupClass(){
+        Actions = new MainActivityViewActions();
+    }
 
     @Before
     public void setup(){
         FileDatabase database = new FileDatabase(mActivityTestRule.getActivity());
 
         database.clear();
+    }
+
+    @AfterClass
+    public static void tearDown(){
+        Actions = null;
     }
 
     @Test
@@ -44,8 +63,7 @@ public class MainActivityTest {
         String productName = "Biscuits";
         String productPrice = "9.25";
 
-        new MainActivityViewActions()
-                .ClickNewProductBtn()
+        Actions.ClickNewProductBtn()
                 .TypeProductName(productName)
                 .TypeProductPrice(productPrice)
                 .FinishAddNewProduct()
@@ -59,8 +77,7 @@ public class MainActivityTest {
         String productPrice = "9.25";
         String validProductCode = "22eeUUii22eeUUii";
 
-        new MainActivityViewActions()
-                .ClickNewProductBtn()
+        Actions.ClickNewProductBtn()
                 .TypeProductName(productName)
                 .TypeProductPrice(productPrice)
                 .ClickManualProductCodeButton()
@@ -76,8 +93,7 @@ public class MainActivityTest {
         String productPrice = "9.25";
         String validProductCode = "22eeUUii";
 
-        new MainActivityViewActions()
-                .ClickNewProductBtn()
+        Actions.ClickNewProductBtn()
                 .TypeProductName(productName)
                 .TypeProductPrice(productPrice)
                 .ClickManualProductCodeButton()
@@ -92,8 +108,7 @@ public class MainActivityTest {
         String productPrice = "9.25";
         String validProductCode = "22eeUUi@22eeUUi$";
 
-        new MainActivityViewActions()
-                .ClickNewProductBtn()
+        Actions.ClickNewProductBtn()
                 .TypeProductName(productName)
                 .TypeProductPrice(productPrice)
                 .ClickManualProductCodeButton()
@@ -108,8 +123,7 @@ public class MainActivityTest {
         String productName = "";
         String productPrice = "9.25";
 
-        new MainActivityViewActions()
-                .ClickNewProductBtn()
+        Actions.ClickNewProductBtn()
                 .TypeProductName(productName)
                 .TypeProductPrice(productPrice)
                 .FinishAddNewProduct()
@@ -122,8 +136,7 @@ public class MainActivityTest {
         String productName = "Peaches";
         String productPrice = "9.25";
 
-        new MainActivityViewActions()
-                .ClickNewProductBtn()
+        Actions.ClickNewProductBtn()
                 .TypeProductName(productName)
                 .TypeProductPrice(productPrice)
                 .FinishAddNewProduct()
@@ -136,8 +149,7 @@ public class MainActivityTest {
         String productName = "Brownie";
         String productPrice = "";
 
-        new MainActivityViewActions()
-                .ClickNewProductBtn()
+        Actions.ClickNewProductBtn()
                 .TypeProductName(productName)
                 .TypeProductPrice(productPrice)
                 .FinishAddNewProduct()
@@ -148,8 +160,7 @@ public class MainActivityTest {
 
     @Test
     public void canAddProductToCart(){
-        new MainActivityViewActions()
-                .AddProductToCart(1)
+        Actions.AddProductToCart(1)
                 .AddProductToCart(3)
                 .CheckCartItemName(0, "Apples")
                 .CheckCartItemName(1, "Bacon");
@@ -157,14 +168,12 @@ public class MainActivityTest {
 
     @Test(expected = Exception.class)
     public void attemptAddSameProductToCartFails(){
-        new MainActivityViewActions()
-                .AddProductToCart(16);
+        Actions.AddProductToCart(16);
     }
 
     @Test
     public void canRemoveProductFromCart(){
-        new MainActivityViewActions()
-                .AddProductToCart(1)
+        Actions.AddProductToCart(1)
                 .AddProductToCart(3)
                 .RemoveCartItem(0)
                 .CheckCartItemName(0, "Bacon");
@@ -172,8 +181,7 @@ public class MainActivityTest {
 
     @Test
     public void removingAllCartItemsShowsEmptyCartMessage(){
-        new MainActivityViewActions()
-                .AddProductToCart(1)
+        Actions.AddProductToCart(1)
                 .AddProductToCart(3)
                 .RemoveCartItem(0)
                 .RemoveCartItem(0);
@@ -184,13 +192,24 @@ public class MainActivityTest {
     @Test
     public void checkoutShowTotalPrice(){
 
-        new MainActivityViewActions()
-                .AddProductToCart(1)
+        Actions.AddProductToCart(1)
                 .AddProductToCart(3)
                 .CheckCartItemName(0, "Apples")
                 .CheckCartItemName(1, "Bacon")
                 .Checkout()
                 .PriceShouldBe("Total: $9.86");
+    }
+
+    @Test
+    public void cartItemsStayAfterRotate(){
+        Actions.AddProductToCart(1)
+                .AddProductToCart(3)
+                .CheckCartItemName(0, "Apples")
+                .CheckCartItemName(1, "Bacon");
+
+        rotateScreen();
+
+        Actions.CheckCartItemName(0, "Apples").CheckCartItemName(1, "Bacon");
     }
 
     //region Helpers
@@ -200,6 +219,16 @@ public class MainActivityTest {
 
         onView(withId(R.id.main_cart_recycler))
                 .check(matches(not(isDisplayed())));
+    }
+
+    public void rotateScreen(){
+        Context context = InstrumentationRegistry.getTargetContext();
+        int orientation = context.getResources().getConfiguration().orientation;
+
+        Activity activity = mActivityTestRule.getActivity();
+        activity.setRequestedOrientation(
+                (orientation == Configuration.ORIENTATION_PORTRAIT) ?
+                        ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
     //endregion
 }

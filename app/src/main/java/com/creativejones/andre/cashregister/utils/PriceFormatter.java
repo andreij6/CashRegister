@@ -7,16 +7,16 @@ import java.util.Locale;
 
 public class PriceFormatter {
 
-    public static String formattPrice(Context context, double price) {
-        NumberFormat format = getCostFormat(context);
+    public static String formattPrice(double price) {
+        NumberFormat format = getCostFormat();
 
         return format.format(price);
     }
 
-    private static NumberFormat getCostFormat(Context context) {
-        Locale current = context.getResources().getConfiguration().locale;
+    private static NumberFormat getCostFormat() {
+        //Locale current = context.getResources().getConfiguration().locale;
 
-        NumberFormat costFormat = NumberFormat.getCurrencyInstance(current);
+        NumberFormat costFormat = NumberFormat.getCurrencyInstance(Locale.US);
         costFormat.setMinimumFractionDigits( 2 );
         costFormat.setMaximumFractionDigits( 2 );
 

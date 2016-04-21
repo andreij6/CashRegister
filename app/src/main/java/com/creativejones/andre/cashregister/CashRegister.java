@@ -20,6 +20,8 @@ public interface CashRegister {
         void checkOut(View view);
 
         void newProductAdded();
+
+        Presenter getPresenter();
     }
 
     interface Presenter {
