@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/main_text_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_shopping_cart_header"/>
+
+    <TextView
+        android:id="@+id/main_cart_empty_label"
+        style="@style/main_text_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="@string/main_cart_items_text"
+        android:textStyle="normal"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/main_cart_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone"/>
+
+</LinearLayout>
