@@ -141,6 +141,16 @@ public class PresenterUnitTests {
                 .MatchProductsInCart(allProducts.subList(1, 4));
     }
 
+    @Test
+    public void attemptingToAddProductWithSameNameAsExistingProductShouldFail(){
+        ArrayList<Product> allProducts = getDummyData();
+
+        FIXTURE.SUTTester
+                .AddProductsToCart(allProducts)
+                .AddProductsToCart(allProducts)
+                .MatchProductsInCart(allProducts);
+    }
+
     //region Helpers
     private HashMap<String, Double> buildMapWithValidData() {
         double taxRate = 0.0875;
