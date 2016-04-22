@@ -1,7 +1,7 @@
 Cash Register
 ========
 
-Cash Register is an application that helps users keep manage grocery items and add combinations of items into cart to get a total price.
+Cash Register is an application that helps users manage grocery products and items to a Shopping Cart.
 
 Look how easy it is to use:
 
