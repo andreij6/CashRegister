@@ -1,6 +1,5 @@
 package com.creativejones.andre.cashregister.utils;
 
-import android.content.Context;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -14,8 +13,6 @@ public class PriceFormatter {
     }
 
     private static NumberFormat getCostFormat() {
-        //Locale current = context.getResources().getConfiguration().locale;
-
         NumberFormat costFormat = NumberFormat.getCurrencyInstance(Locale.US);
         costFormat.setMinimumFractionDigits( 2 );
         costFormat.setMaximumFractionDigits( 2 );
