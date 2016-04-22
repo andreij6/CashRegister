@@ -1,12 +1,9 @@
-package com.creativejones.andre.cashregister.models;
+package com.creativejones.andre.cashregister.entities;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 public class Product implements Parcelable {
 

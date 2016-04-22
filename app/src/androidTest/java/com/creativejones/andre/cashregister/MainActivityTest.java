@@ -31,6 +31,7 @@ import static org.hamcrest.Matchers.not;
 public class MainActivityTest {
 
     private static MainActivityViewActions Actions;
+
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 

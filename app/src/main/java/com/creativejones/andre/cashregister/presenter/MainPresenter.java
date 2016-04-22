@@ -1,13 +1,11 @@
 package com.creativejones.andre.cashregister.presenter;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import com.creativejones.andre.cashregister.CashRegister;
 import com.creativejones.andre.cashregister.InvalidInputException;
 import com.creativejones.andre.cashregister.data.IProductRepository;
-import com.creativejones.andre.cashregister.data.ProductRepository;
-import com.creativejones.andre.cashregister.models.Product;
+import com.creativejones.andre.cashregister.entities.Product;
 import com.creativejones.andre.cashregister.models.ShoppingCart;
 import com.creativejones.andre.cashregister.utils.ValidationConstants;
 

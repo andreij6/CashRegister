@@ -1,7 +1,8 @@
 package com.creativejones.andre.cashregister.models;
 
 import android.os.Bundle;
-import android.util.Log;
+
+import com.creativejones.andre.cashregister.entities.Product;
 
 import java.util.ArrayList;
 import java.util.Arrays;

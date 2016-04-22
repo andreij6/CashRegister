@@ -1,7 +1,7 @@
 package com.creativejones.andre.cashregister;
 
 import com.creativejones.andre.cashregister.data.IProductRepository;
-import com.creativejones.andre.cashregister.models.Product;
+import com.creativejones.andre.cashregister.entities.Product;
 import com.creativejones.andre.cashregister.presenter.MainPresenter;
 
 import java.util.ArrayList;

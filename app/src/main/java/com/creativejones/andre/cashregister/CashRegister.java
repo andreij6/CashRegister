@@ -3,7 +3,7 @@ package com.creativejones.andre.cashregister;
 import android.os.Bundle;
 import android.view.View;
 
-import com.creativejones.andre.cashregister.models.Product;
+import com.creativejones.andre.cashregister.entities.Product;
 import com.creativejones.andre.cashregister.widget.AllProductsAdapter;
 import com.creativejones.andre.cashregister.widget.CartItemAdapter;
 

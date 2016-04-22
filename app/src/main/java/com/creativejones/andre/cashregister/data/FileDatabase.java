@@ -2,7 +2,7 @@ package com.creativejones.andre.cashregister.data;
 
 import android.content.Context;
 
-import com.creativejones.andre.cashregister.models.Product;
+import com.creativejones.andre.cashregister.entities.Product;
 
 import org.apache.commons.io.FileUtils;
 

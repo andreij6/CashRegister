@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.creativejones.andre.cashregister.CashRegister;
 import com.creativejones.andre.cashregister.R;
 import com.creativejones.andre.cashregister.data.ProductRepository;
-import com.creativejones.andre.cashregister.models.Product;
+import com.creativejones.andre.cashregister.entities.Product;
 import com.creativejones.andre.cashregister.presenter.MainPresenter;
 import com.creativejones.andre.cashregister.widget.AllProductsAdapter;
 import com.creativejones.andre.cashregister.widget.BaseProductRecyclerAdapter;

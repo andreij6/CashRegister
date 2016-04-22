@@ -1,6 +1,6 @@
 package com.creativejones.andre.cashregister;
 
-import com.creativejones.andre.cashregister.models.Product;
+import com.creativejones.andre.cashregister.entities.Product;
 
 import org.junit.After;
 import org.junit.Before;
@@ -27,14 +27,16 @@ public class PresenterUnitTests {
     public void checkOutCalculatesCorrectPrice(){
         HashMap<String, Double> testCollection = buildMapWithValidData();
 
-        FIXTURE.SUTTester.Code_TotalPrice_OutputShouldMatchOnCheckout(testCollection);
+        FIXTURE.SUTTester
+                .Code_TotalPrice_OutputShouldMatchOnCheckout(testCollection);
     }
 
     @Test
     public void checkOutShouldCacluteCorrectPriceWhenProductNotFoundForUUID(){
         HashMap<String, Double> testCollection = buildMapWithInValidData();
 
-        FIXTURE.SUTTester.Code_TotalPrice_OutputShouldMatchOnCheckout(testCollection);
+        FIXTURE.SUTTester
+                .Code_TotalPrice_OutputShouldMatchOnCheckout(testCollection);
     }
     //endregion
 

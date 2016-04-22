@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.creativejones.andre.cashregister.R;
-import com.creativejones.andre.cashregister.models.Product;
+import com.creativejones.andre.cashregister.entities.Product;
 import com.creativejones.andre.cashregister.utils.PriceFormatter;
 
 import java.util.ArrayList;

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.creativejones.andre.cashregister.R;
-import com.creativejones.andre.cashregister.models.Product;
+import com.creativejones.andre.cashregister.entities.Product;
 
 import java.util.ArrayList;
 

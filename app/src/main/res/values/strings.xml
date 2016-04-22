@@ -8,7 +8,7 @@
     <string name="new_product">New Product</string>
     <string name="cancel">Cancel</string>
     <string name="product_name_hint">Product Name</string>
-    <string name="product_code_hint">Code - ie. \"A12T-4G7Y-QPL9-3N4M\"</string>
+    <string name="product_code_hint">Code - ie. \"A12T4G7YQPL93N4M\"</string>
     <string name="product_price_hint">Price - ie. 9.25</string>
     <string name="main_checkout_btn">Checkout</string>
     <string name="dialog_checkout_price_format">Total: %s</string>
