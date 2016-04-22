@@ -2,9 +2,9 @@ package com.creativejones.andre.cashregister;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 
-import com.creativejones.andre.cashregister.utils.ValidationConstants;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -16,10 +16,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.creativejones.andre.cashregister.TestUtils.withRecyclerView;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.Matchers.not;
 
 class MainActivityViewActions {
+
 
     public MainActivityViewActions ClickNewProductBtn() {
         onView(withId(R.id.main_new_product_btn))

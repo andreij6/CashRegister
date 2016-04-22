@@ -17,4 +17,11 @@
     <string name="dialog_product_manually_add_code">Manually Add Code</string>
     <string name="dialog_product_automatically_add_code">Automatically Generate Code</string>
     <string name="finish">Finish</string>
+    <string name="validation_name_empty">Name Must Have A Value</string>
+    <string name="validation_name_exits">Name Already Exists</string>
+    <string name="validation_price_format">Price Not Valid</string>
+    <string name="validation_price_empty">Price Must Have A Value</string>
+    <string name="validation_code_exists">Product Code Exists</string>
+    <string name="validation_code_empty">Product Code Must Have A Value</string>
+    <string name="validation_code_mismatch">Product Code Should be 16 alphanumeric Characters</string>
 </resources>

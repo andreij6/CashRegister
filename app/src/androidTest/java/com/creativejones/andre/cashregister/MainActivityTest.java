@@ -99,7 +99,7 @@ public class MainActivityTest {
                 .ClickManualProductCodeButton()
                 .TypeProductCode(validProductCode)
                 .FinishAddNewProduct()
-                .CheckValidationPrompt(mActivityTestRule.getActivity(), ValidationConstants.CODE_MISMATCH);
+                .CheckValidationPrompt(mActivityTestRule.getActivity(), mActivityTestRule.getActivity().getString(ValidationConstants.CODE_MISMATCH));
     }
 
     @Test
@@ -114,7 +114,7 @@ public class MainActivityTest {
                 .ClickManualProductCodeButton()
                 .TypeProductCode(validProductCode)
                 .FinishAddNewProduct()
-                .CheckValidationPrompt(mActivityTestRule.getActivity(), ValidationConstants.CODE_MISMATCH);
+                .CheckValidationPrompt(mActivityTestRule.getActivity(), mActivityTestRule.getActivity().getString(ValidationConstants.CODE_MISMATCH));
 
     }
 
@@ -127,7 +127,7 @@ public class MainActivityTest {
                 .TypeProductName(productName)
                 .TypeProductPrice(productPrice)
                 .FinishAddNewProduct()
-                .CheckValidationPrompt(mActivityTestRule.getActivity(), ValidationConstants.NAME_EMPTY);
+                .CheckValidationPrompt(mActivityTestRule.getActivity(), mActivityTestRule.getActivity().getString(ValidationConstants.NAME_EMPTY));
 
     }
 
@@ -140,7 +140,7 @@ public class MainActivityTest {
                 .TypeProductName(productName)
                 .TypeProductPrice(productPrice)
                 .FinishAddNewProduct()
-                .CheckValidationPrompt(mActivityTestRule.getActivity(), ValidationConstants.NAME_EXISTS);
+                .CheckValidationPrompt(mActivityTestRule.getActivity(), mActivityTestRule.getActivity().getString(ValidationConstants.NAME_EXISTS));
 
     }
 
@@ -153,7 +153,7 @@ public class MainActivityTest {
                 .TypeProductName(productName)
                 .TypeProductPrice(productPrice)
                 .FinishAddNewProduct()
-                .CheckValidationPrompt(mActivityTestRule.getActivity(), ValidationConstants.PRICE_EMPTY);
+                .CheckValidationPrompt(mActivityTestRule.getActivity(), mActivityTestRule.getActivity().getString(ValidationConstants.PRICE_EMPTY));
 
     }
     //endregion

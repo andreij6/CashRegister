@@ -147,7 +147,7 @@ public class MainPresenter implements CashRegister.Presenter {
         try {
             BigDecimal value = new BigDecimal(price);
         } catch (NumberFormatException ne){
-            throw new InvalidInputException(ValidationConstants.PRICE_INVALID_FORMAT);
+            throw createException(ValidationConstants.PRICE_INVALID_FORMAT);
         }
 
     }
@@ -158,7 +158,7 @@ public class MainPresenter implements CashRegister.Presenter {
 
         for (Product product : inventory) {
             if(product.getName().equalsIgnoreCase(name)){
-                throw new InvalidInputException(ValidationConstants.NAME_EXISTS);
+                throw createException(ValidationConstants.NAME_EXISTS);
             }
         }
 
@@ -168,7 +168,7 @@ public class MainPresenter implements CashRegister.Presenter {
 
         for (Product product : inventory) {
             if(product.getProductCode().equalsIgnoreCase(code)){
-                throw new InvalidInputException(ValidationConstants.CODE_EXISTS);
+                throw createException(ValidationConstants.CODE_EXISTS);
             }
         }
 
@@ -191,14 +191,14 @@ public class MainPresenter implements CashRegister.Presenter {
         return true;
     }
 
-    private void isStringEmpty(String value, String errorMessage) throws InvalidInputException{
+    private void isStringEmpty(String value, int errorMessageId) throws InvalidInputException{
         if(value.equalsIgnoreCase("")){
-            throw new InvalidInputException(errorMessage);
+            throw new InvalidInputException(errorMessageId + "");
         }
     }
 
-    private InvalidInputException createException(String message){
-        return new InvalidInputException(message);
+    private InvalidInputException createException(int messageId){
+        return new InvalidInputException(messageId + "");
     }
     //endregion
 

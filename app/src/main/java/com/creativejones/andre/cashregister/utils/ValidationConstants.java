@@ -1,14 +1,16 @@
 package com.creativejones.andre.cashregister.utils;
 
+import com.creativejones.andre.cashregister.R;
+
 public class ValidationConstants {
-    public static final String NAME_EMPTY = "Name Must Have A Value";
-    public static final String NAME_EXISTS = "Name Already Exists";
+    public static final int NAME_EMPTY = R.string.validation_name_empty;
+    public static final int NAME_EXISTS = R.string.validation_name_exits;
 
-    public static final String PRICE_INVALID_FORMAT = "Price Not Valid";
-    public static final String PRICE_EMPTY = "Price Must Have A Value";
+    public static final int PRICE_INVALID_FORMAT = R.string.validation_price_format;
+    public static final int PRICE_EMPTY = R.string.validation_price_empty;
 
 
-    public static final String CODE_EXISTS = "Product Code Exists";
-    public static final String CODE_EMPTY = "Product Code Must Have A Value";
-    public static final String CODE_MISMATCH = "Product Code Should be 16 alphanumeric Characters";
+    public static final int CODE_EXISTS = R.string.validation_code_exists;
+    public static final int CODE_EMPTY = R.string.validation_code_empty;
+    public static final int CODE_MISMATCH = R.string.validation_code_mismatch;
 }
