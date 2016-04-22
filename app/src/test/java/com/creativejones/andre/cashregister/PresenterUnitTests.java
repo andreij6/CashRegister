@@ -22,7 +22,6 @@ public class PresenterUnitTests {
         FIXTURE = null;
     }
 
-    //region Checkout
     @Test
     public void checkOutCalculatesCorrectPrice(){
         HashMap<String, Double> testCollection = buildMapWithValidData();
@@ -32,16 +31,14 @@ public class PresenterUnitTests {
     }
 
     @Test
-    public void checkOutShouldCacluteCorrectPriceWhenProductNotFoundForUUID(){
+    public void checkOutShouldCalculateCorrectPriceWhenProductNotFoundForUUID(){
         HashMap<String, Double> testCollection = buildMapWithInValidData();
 
         FIXTURE.SUTTester
                 .Code_TotalPrice_OutputShouldMatchOnCheckout(testCollection);
     }
-    //endregion
 
-
-    @Test //getAllProducts Test
+    @Test
     public void shouldReturnProductsInDatabase(){
         ArrayList<Product> expected = getDummyData();
 
@@ -64,10 +61,20 @@ public class PresenterUnitTests {
     }
 
     @Test(expected = InvalidInputException.class)
-    public void shouldNotCreateProductWithInvalidCode() throws InvalidInputException{
+    public void failsWhenAttemptingToCreateProductWithTooShortCode() throws InvalidInputException{
         String name = "Brownie";
         String price = "2.95";
         String code = "NotValid";
+
+        FIXTURE.SUTTester
+                .CreateProduct(name, price, code);
+    }
+
+    @Test(expected = InvalidInputException.class)
+    public void failsWhenAttemptingToCreateProductWithNonAlphaNumericCharacters() throws InvalidInputException {
+        String name = "Brownie";
+        String price = "2.95";
+        String code = "u@uuuuuu$uuuu^uu";
 
         FIXTURE.SUTTester
                 .CreateProduct(name, price, code);
@@ -77,17 +84,61 @@ public class PresenterUnitTests {
     public void shouldCreateProductWithValidCode() throws Exception{
         String name = "Brownie";
         String price = "2.95";
-        String code = "uuuuuuuuuuuuuuuu";
+        String code = "uuuuuuuuuuuuu855";
 
         FIXTURE.SUTTester
                     .CreateProduct(name, price, code)
                     .DatabaseShouldContainProduct(name, price);
     }
 
+    @Test
+    public void shouldReturnEmptyCodeStringWhenNoItemsInCart(){
+        FIXTURE.SUTTester.CodeStringShouldBeEmpty();
+    }
 
     @Test
-    public void codeStringShouldBeEmptyWhenNoCartItems(){
-        FIXTURE.SUTTester.CodeStringShouldBeEmpty();
+    public void shouldContainCorrectProductsInCodeString(){
+        ArrayList<Product> allProducts = getDummyData();
+
+        FIXTURE.SUTTester
+                .AddProductsToCart(allProducts)
+                .CodeStringContains("UUID7")
+                .CodeStringContains("UUID4")
+                .CodeStringContains("UUID5")
+                .CodeStringContains("UUID6");
+    }
+
+    @Test
+    public void shouldContainCorrectProductsInCodeStringAfterRemovingProducts(){
+        ArrayList<Product> allProducts = getDummyData();
+
+        FIXTURE.SUTTester
+                .AddProductsToCart(allProducts)
+                .CodeStringContains("UUID7")
+                .CodeStringContains("UUID4")
+                .RemoveProduct(allProducts.get(1)) //Apples
+                .RemoveProduct(allProducts.get(0))
+                .CodeStringDoesNotContain("UUID7")
+                .CodeStringDoesNotContain("UUID4");
+    }
+
+    @Test
+    public void cartShouldContainProducts(){
+        ArrayList<Product> allProducts = getDummyData();
+
+        FIXTURE.SUTTester
+                .AddProductsToCart(allProducts)
+                .MatchProductsInCart(allProducts);
+    }
+
+    @Test
+    public void cartShouldContainProductsAfterRemovingSomeProducts(){
+        ArrayList<Product> allProducts = getDummyData();
+
+        FIXTURE.SUTTester
+                .AddProductsToCart(allProducts)
+                .RemoveProduct(allProducts.get(0))
+                .MatchProductsInCart(allProducts.subList(1, 4));
     }
 
     //region Helpers
@@ -124,6 +175,5 @@ public class PresenterUnitTests {
 
         return dataSource;
     }
-
     //endregion
 }

@@ -6,6 +6,7 @@ import com.creativejones.andre.cashregister.presenter.MainPresenter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
@@ -84,6 +85,31 @@ class PresenterSUT {
         return this;
     }
 
+    public PresenterSUT AddProductsToCart(ArrayList<Product> allProducts) {
+        for (Product product : allProducts) {
+            SUT.addProductToCart(product);
+        }
+
+        return this;
+    }
+
+    public PresenterSUT RemoveProduct(Product product) {
+        SUT.removeProductFromCart(product);
+        return this;
+    }
+
+    public PresenterSUT CodeStringContains(String code) {
+        assertTrue(SUT.getCodeString().contains(code));
+
+        return this;
+    }
+
+    public PresenterSUT CodeStringDoesNotContain(String code) {
+        assertTrue(!SUT.getCodeString().contains(code));
+
+        return this;
+    }
+
     //region Helpers
     private IProductRepository MockDatabase() {
         return new IProductRepository() {
@@ -138,6 +164,16 @@ class PresenterSUT {
 
         if(!foundProduct){
             throw new Exception("Did Not Find Product");
+        }
+    }
+
+    public void MatchProductsInCart(List<Product> products) {
+        ArrayList<Product> cartItems = SUT.getProductInCart();
+
+        assertEquals(cartItems.size(), products.size());
+
+        for (Product product : products) {
+            assertTrue(cartItems.contains(product));
         }
     }
     //endregion
