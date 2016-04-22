@@ -11,9 +11,9 @@ Look how easy it is to use:
 Features
 --------
 
-- Add Products to the Cart
-- Create New Products with either specified or auto-generated Product Code
-- See the Cart Price total by touching the Checkout button.
+- Add Products to a Shopping Cart
+- Create New Products with either custom or auto-generated Product Code
+- View Shopping Cart Total Price
 
 Overview
 ------------
@@ -27,21 +27,22 @@ Cash Register is designed with the Model-View-Presenter design pattern.
 Model (entities Package)
 ----------
 Product Class
-- Parcelable
 - Properties (String Name, String ProductCode, BigDecimal Price)
+- Parcelable
+
 
 View
 ------------
 MainActivity
 - 2 Buttons (New Product and Checkout)
-- 3 TextViews (2 Section headings, 1 to display when Cart is empty)
+- 3 TextViews (2 Section Labels, 1 displays when Cart is empty)
 - 2 RecyclerViews
 
 Checkout Button
 ```
 @Bind(R.id.main_checkout_button) Button CheckoutBtn;
 ```
-- Visible When Items are in the Cart
+- Visible When Items are in the Shopping Cart
 - Launches CheckoutDialogFragment to show Total Price.
 
 New Product Button
