@@ -3,8 +3,6 @@ Cash Register
 
 Cash Register is an application that helps users manage grocery products and items to a Shopping Cart.
 
-Look how easy it is to use:
-
     import project into Android Studio
     Sync Gradle and download the neccessary Android sdk components
 
